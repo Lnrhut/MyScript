@@ -1,0 +1,35 @@
+-- LocalScript: Notificación cuando un jugador se une
+
+-- Obtener el servicio de jugadores
+local Players = game:GetService("Players")
+
+-- Crear un ScreenGui y un TextLabel para la notificación
+local screenGui = Instance.new("ScreenGui")
+local notificationLabel = Instance.new("TextLabel")
+
+-- Configurar ScreenGui
+screenGui.Parent = Players.LocalPlayer:WaitForChild("PlayerGui")
+screenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+-- Configurar TextLabel
+notificationLabel.Parent = screenGui
+notificationLabel.Size = UDim2.new(0, 300, 0, 50)
+notificationLabel.Position = UDim2.new(0.5, -150, 0.8, -25) -- Centro en la parte inferior de la pantalla
+notificationLabel.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+notificationLabel.BackgroundTransparency = 0.5
+notificationLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+notificationLabel.TextScaled = true
+notificationLabel.Text = ""
+
+-- Función para mostrar la notificación
+local function showNotification(message)
+    notificationLabel.Text = message
+    notificationLabel.Visible = true
+    wait(3)  -- Mostrar la notificación por 3 segundos
+    notificationLabel.Visible = false
+end
+
+-- Conectar al evento PlayerAdded
+Players.PlayerAdded:Connect(function(player)
+    showNotification(player.Name .. " se ha unido al juego.")
+end)
