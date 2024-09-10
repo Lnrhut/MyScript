@@ -4,16 +4,16 @@ local ca = Instance.new("TextLabel")
 local da = Instance.new("Frame")
 local _b = Instance.new("TextLabel")
 local ab = Instance.new("TextLabel")
-local toggleButton = Instance.new("TextButton") -- Botón de alternar visibilidad
-local fpsLabel = Instance.new("TextLabel") -- Etiqueta para mostrar los FPS
-local timerLabel = Instance.new("TextLabel") -- Etiqueta para mostrar el temporizador
-local isVisible = true -- Estado inicial de visibilidad
+local toggleButton = Instance.new("TextButton")
+local fpsLabel = Instance.new("TextLabel")
+local timerLabel = Instance.new("TextLabel")
+local isVisible = true
 
--- Parent the ScreenGui to the player's PlayerGui
+
 ba.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 ba.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
--- TextLabel setup
+
 ca.Parent = ba
 ca.Active = true
 ca.BackgroundColor3 = Color3.new(0.176, 0.176, 0.176)
@@ -25,13 +25,13 @@ ca.Text = "Anti AFK Kick Script"
 ca.TextColor3 = Color3.new(0, 1, 1)
 ca.TextSize = 22
 
--- Frame setup
+
 da.Parent = ca
 da.BackgroundColor3 = Color3.new(0.196, 0.196, 0.196)
 da.Position = UDim2.new(0, 0, 1.019, 0)
 da.Size = UDim2.new(0, 304, 0, 107)
 
--- Bottom text setup
+
 _b.Parent = da
 _b.BackgroundColor3 = Color3.new(0.176, 0.176, 0.176)
 _b.Position = UDim2.new(0, 0, 0.8, 0)
@@ -41,7 +41,7 @@ _b.Text = "Made by ElPerritofeo_YT Y CHATGPT"
 _b.TextColor3 = Color3.new(1, 1, 1)
 _b.TextSize = 20
 
--- Status label setup
+
 ab.Parent = da
 ab.BackgroundColor3 = Color3.new(0.176, 0.176, 0.176)
 ab.Position = UDim2.new(0, 0, 0.158, 0)
@@ -51,9 +51,9 @@ ab.Text = "Status: Script Started"
 ab.TextColor3 = Color3.new(1, 1, 1)
 ab.TextSize = 20
 
--- FPS Label setup
+
 fpsLabel.Parent = ba
-fpsLabel.Position = UDim2.new(0.9, 0, 0.05, 0) -- Posicionamos la etiqueta en la esquina superior derecha
+fpsLabel.Position = UDim2.new(0.9, 0, 0.05, 0)
 fpsLabel.Size = UDim2.new(0, 100, 0, 30)
 fpsLabel.BackgroundTransparency = 1
 fpsLabel.TextColor3 = Color3.new(1, 1, 1)
@@ -61,9 +61,9 @@ fpsLabel.Font = Enum.Font.Arial
 fpsLabel.TextSize = 20
 fpsLabel.Text = "FPS: 0"
 
--- Timer Label setup
+
 timerLabel.Parent = ba
-timerLabel.Position = UDim2.new(0.83, 0, 0.1, 0) -- Mover el temporizador un poco más a la izquierda
+timerLabel.Position = UDim2.new(0.83, 0, 0.1, 0)
 timerLabel.Size = UDim2.new(0, 150, 0, 30)
 timerLabel.BackgroundTransparency = 1
 timerLabel.TextColor3 = Color3.new(1, 1, 1)
@@ -71,15 +71,15 @@ timerLabel.Font = Enum.Font.Arial
 timerLabel.TextSize = 20
 timerLabel.Text = "Elapsed Time: 0:00"
 
--- Toggle Button setup
+
 toggleButton.Parent = ba
-toggleButton.Position = UDim2.new(0.697, 0, 0.25, 0) -- Posicionamos el botón debajo del texto principal
+toggleButton.Position = UDim2.new(0.697, 0, 0.25, 0)
 toggleButton.Size = UDim2.new(0, 100, 0, 30)
 toggleButton.Text = "Toggle GUI"
 toggleButton.BackgroundColor3 = Color3.new(0.2, 0.2, 0.2)
 toggleButton.TextColor3 = Color3.new(1, 1, 1)
 
--- Función para alternar la visibilidad
+
 local function toggleVisibility()
 	if isVisible then
 		-- Hacer transparente el GUI
@@ -104,13 +104,13 @@ local function toggleVisibility()
 		fpsLabel.TextTransparency = 0
 		timerLabel.TextTransparency = 0
 	end
-	isVisible = not isVisible -- Cambia el estado
+	isVisible = not isVisible 
 end
 
--- Conectar el botón a la función de alternar
+
 toggleButton.MouseButton1Click:Connect(toggleVisibility)
 
--- Anti-AFK Script
+
 local bb = game:GetService('VirtualUser')
 game:GetService('Players').LocalPlayer.Idled:Connect(function()
 	bb:CaptureController()
@@ -129,7 +129,7 @@ runService.RenderStepped:Connect(function()
 	frames = frames + 1
 	local currentTime = tick()
 
-	-- Actualiza cada segundo
+	
 	if currentTime - lastTime >= 1 then
 		local fps = frames / (currentTime - lastTime)
 		fpsLabel.Text = string.format("FPS: %.2f", fps)
@@ -138,7 +138,7 @@ runService.RenderStepped:Connect(function()
 	end
 end)
 
--- Actualizar el temporizador
+
 local startTime = tick()
 
 runService.RenderStepped:Connect(function()
